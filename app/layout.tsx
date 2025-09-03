@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Analytics } from "@vercel/analytics/next"
 import { Space_Grotesk, Inter } from "next/font/google"
 import { Suspense } from "react"
+import { Toaster } from "@/components/ui/toaster"
 import "./globals.css"
 
 const spaceGrotesk = Space_Grotesk({
@@ -51,8 +52,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} antialiased`}>
-      <body className="bg-[#0a0b0f] text-white font-sans">
+      <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased bg-black text-white`}>
         <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+        <Toaster />
         <Analytics />
       </body>
     </html>
