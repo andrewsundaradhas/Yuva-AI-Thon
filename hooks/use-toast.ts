@@ -1,22 +1,32 @@
 "use client"
 
-// Inspired by react-hot-toast library
 import * as React from "react"
 
-import type {
-  ToastActionElement,
-  ToastProps,
-} from "@/components/ui/toast"
+// Define types locally to avoid circular imports
+type ToastActionElement = React.ReactElement<{
+  altText: string;
+  children: React.ReactNode;
+  onClick: () => void;
+  className?: string;
+}>
 
-const TOAST_LIMIT = 1
-const TOAST_REMOVE_DELAY = 1000000
+type ToastProps = {
+  id: string;
+  variant?: "default" | "destructive" | null;
+  className?: string;
+  onOpenChange?: (open: boolean) => void;
+  duration?: number;
+}
+
+const TOAST_LIMIT = 1;
+const TOAST_REMOVE_DELAY = 1000000;
 
 type ToasterToast = ToastProps & {
-  id: string
-  title?: React.ReactNode
-  description?: React.ReactNode
-  action?: ToastActionElement
-}
+  id: string;
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  action?: ToastActionElement;
+};
 
 const actionTypes = {
   ADD_TOAST: "ADD_TOAST",
