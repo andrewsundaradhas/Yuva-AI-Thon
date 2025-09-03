@@ -49,18 +49,23 @@ export function GalaxyCanvas({ mode = "landing", onZoomComplete, className }: Ga
     { r: 255, g: 106, b: 0 }, // orange
   ]
 
-  // create soft glow sprite for a given color (drawn scaled per particle)
-  function createStarSprite(r: number, g: number, b: number, baseSize = 32) {
+  // create optimized soft glow sprite for a given color
+  function createStarSprite(r: number, g: number, b: number, baseSize = 24) {
     const off = document.createElement("canvas")
-    off.width = baseSize
-    off.height = baseSize
-    const ctx = off.getContext("2d")!
-    const cx = baseSize / 2
-    const cy = baseSize / 2
+    // Use smaller base size for better performance
+    const size = Math.min(baseSize, 24)
+    off.width = size
+    off.height = size
+    const ctx = off.getContext("2d", { willReadFrequently: false })!
+    const cx = size / 2
+    const cy = size / 2
+    
+    // Simplified gradient with fewer color stops
     const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, cx)
     grad.addColorStop(0.0, `rgba(${r},${g},${b},1)`)
-    grad.addColorStop(0.35, `rgba(${r},${g},${b},0.6)`)
+    grad.addColorStop(0.5, `rgba(${r},${g},${b},0.4)`)
     grad.addColorStop(1.0, `rgba(${r},${g},${b},0)`)
+    
     ctx.fillStyle = grad
     ctx.beginPath()
     ctx.arc(cx, cy, cx, 0, Math.PI * 2)
@@ -71,14 +76,14 @@ export function GalaxyCanvas({ mode = "landing", onZoomComplete, className }: Ga
   const spawnParticles = useCallback(
     (width: number, height: number) => {
       const area = width * height
-      const dpr = Math.min(2, window.devicePixelRatio || 1)
+      const dpr = Math.min(1.5, window.devicePixelRatio || 1) // Reduced max DPR for performance
       const isMobile = typeof navigator !== "undefined" && /Mobi|Android/i.test(navigator.userAgent)
-      // adaptive counts based on area and device
+      // adaptive counts based on area and device - reduced particle count
       let target =
         mode === "landing"
-          ? Math.min(7000, Math.floor(area / (dpr > 1 ? 210 : 180)))
-          : Math.min(3500, Math.floor(area / (dpr > 1 ? 380 : 320)))
-      if (isMobile) target = Math.floor(target * 0.7)
+          ? Math.min(4000, Math.floor(area / (dpr > 1 ? 280 : 240)))
+          : Math.min(2500, Math.floor(area / (dpr > 1 ? 450 : 380)))
+      if (isMobile) target = Math.floor(target * 0.6) // Further reduce for mobile
 
       const cx = width / 2
       const cy = height / 2
@@ -112,9 +117,10 @@ export function GalaxyCanvas({ mode = "landing", onZoomComplete, className }: Ga
     const ctx = canvas.getContext("2d", { alpha: true })
     if (!ctx) return
 
-    // enable smoothing for scaled glow sprites
+    // Optimize rendering settings
     ctx.imageSmoothingEnabled = true
-    ctx.imageSmoothingQuality = "high"
+    // Use lower quality when zoomed out for better performance
+    ctx.imageSmoothingQuality = zoomingRef.current ? "high" : "medium"
 
     const dpr = Math.min(2, window.devicePixelRatio || 1)
     const resize = () => {
@@ -127,20 +133,41 @@ export function GalaxyCanvas({ mode = "landing", onZoomComplete, className }: Ga
     }
     resize()
 
-    // pre-rendered star sprites to replace shadowBlur arcs
+    // Pre-render star sprites - use smaller size and cache them
     const starSprites = [
-      createStarSprite(colors[0].r, colors[0].g, colors[0].b, 32),
-      createStarSprite(colors[1].r, colors[1].g, colors[1].b, 32),
+      createStarSprite(colors[0].r, colors[0].g, colors[0].b, 24),
+      createStarSprite(colors[1].r, colors[1].g, colors[1].b, 24),
     ]
+    
+    // Pre-warm the animation by running a few frames in advance
+    const warmupFrames = 3
+    for (let i = 0; i < warmupFrames; i++) {
+      particles.forEach(p => {
+        p.angle += p.speed * 0.016 // 60fps frame time
+        p.radius += p.radialVel * 0.016
+        if (p.radius < 12) p.radius = maxR
+        else if (p.radius > maxR) p.radius = 12
+      })
+    }
 
     let { particles, cx, cy, maxR } = spawnParticles(canvas.width / dpr, canvas.height / dpr)
 
-    // time-based animation
+    // time-based animation with throttling
     lastTsRef.current = performance.now()
     fpsWindowRef.current = []
+    let lastRenderTime = 0
+    const targetFPS = 60
+    const frameTime = 1000 / targetFPS
 
     const animate = (ts: number) => {
       rafRef.current = requestAnimationFrame(animate)
+      
+      // Throttle frame rate
+      const now = performance.now()
+      const elapsed = now - lastRenderTime
+      if (elapsed < frameTime) return
+      lastRenderTime = now - (elapsed % frameTime)
+      
       const last = lastTsRef.current
       lastTsRef.current = ts
       let dt = (ts - last) / 1000
@@ -161,10 +188,18 @@ export function GalaxyCanvas({ mode = "landing", onZoomComplete, className }: Ga
         particles.length = keep
       }
 
-      // background trail (lower alpha in landing for more trail)
-      const bgAlpha = mode === "landing" ? 0.16 : 0.28
-      ctx.fillStyle = `rgba(0,0,0,${bgAlpha})`
-      ctx.fillRect(0, 0, canvas.width / dpr, canvas.height / dpr)
+      // Optimized background trail - only clear when necessary
+      if (mode === 'landing') {
+        // Lighter trail for landing
+        ctx.fillStyle = 'rgba(0,0,0,0.12)'
+        ctx.fillRect(0, 0, canvas.width / dpr, canvas.height / dpr)
+      } else {
+        // For background mode, clear less frequently for better performance
+        if (Math.random() > 0.7) { // Only clear ~30% of frames
+          ctx.fillStyle = 'rgba(0,0,0,0.25)'
+          ctx.fillRect(0, 0, canvas.width / dpr, canvas.height / dpr)
+        }
+      }
 
       // galaxy base rotation (radians per second)
       const baseRot = mode === "landing" ? 0.06 : 0.035
@@ -180,9 +215,13 @@ export function GalaxyCanvas({ mode = "landing", onZoomComplete, className }: Ga
       const totalRot = baseRot * (ts / 1000)
       ctx.rotate(totalRot)
 
-      // Additive blending for glow
+      // Only use additive blending when zoomed in for better performance
       const prevComposite = ctx.globalCompositeOperation
-      ctx.globalCompositeOperation = "lighter"
+      if (zoomingRef.current && zoomTRef.current > 0.3) {
+        ctx.globalCompositeOperation = "lighter"
+      } else {
+        ctx.globalCompositeOperation = prevComposite
+      }
 
       // draw particles using pre-rendered sprites
       for (let i = 0; i < particles.length; i++) {

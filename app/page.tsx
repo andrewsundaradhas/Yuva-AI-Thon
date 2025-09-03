@@ -12,6 +12,7 @@ import TimelineSection from "@/sections/timeline"
 import VenueSection from "@/sections/venue"
 import RegistrationSection from "@/sections/registration"
 import ContactSection from "@/sections/contact"
+import FollowUs from "@/sections/follow-us"
 import Footer from "@/sections/footer"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -150,6 +151,7 @@ export default function HomePage() {
             <VenueSection />
             <RegistrationSection />
             <ContactSection />
+            <FollowUs />
             <Footer />
           </div>
         </>

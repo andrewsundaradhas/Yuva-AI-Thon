@@ -1,230 +1,203 @@
-import React from "react";
 import { motion } from "framer-motion";
 
-const timelineEvents = [
+interface TimelineEvent {
+  date: string;
+  time: string;
+  title: string;
+  description: string;
+  icon: string;
+  color: string;
+}
+
+const timelineEvents: TimelineEvent[] = [
   {
-    date: "Sep 1, 2025",
-    title: "Registration Opens",
-    description: "Kick off your journey by registering for Yuva-AI-Thon!",
-    icon: "🚀",
-    color: "from-emerald-400 to-green-600",
+    date: "24th September 2025",
+    time: "8:00 AM - 9:00 AM",
+    title: "Registration & Breakfast",
+    description: "Check-in, breakfast, and team formation for participants.",
+    icon: "☕",
+    color: "from-blue-500 to-cyan-500",
   },
   {
-    date: "Sep 10, 2025",
-    title: "Team Formation",
-    description: "Form your dream team and start brainstorming ideas.",
-    icon: "👥",
-    color: "from-purple-400 to-indigo-600",
+    date: "24th September 2025",
+    time: "9:00 AM - 10:00 AM",
+    title: "Opening Ceremony",
+    description: "Welcome address, keynote speech, and event overview.",
+    icon: "🎤",
+    color: "from-purple-500 to-pink-500",
   },
   {
-    date: "Sep 20, 2025",
-    title: "Hackathon Begins",
-    description: "Start building your project and bring your ideas to life.",
-    icon: "⚡",
-    color: "from-yellow-400 to-orange-600",
+    date: "24th September 2025",
+    time: "10:00 AM - 12:00 PM",
+    title: "Hacking Begins",
+    description: "Coding starts! Teams begin working on their projects.",
+    icon: "⌨️",
+    color: "from-green-500 to-emerald-500",
   },
   {
-    date: "Sep 30, 2025",
-    title: "Submission Deadline",
-    description: "Submit your final project for evaluation.",
-    icon: "📝",
-    color: "from-blue-400 to-cyan-600",
+    date: "24th September 2025",
+    time: "12:00 PM - 1:00 PM",
+    title: "Lunch Break",
+    description: "Networking lunch with fellow participants and mentors.",
+    icon: "🍽️",
+    color: "from-yellow-500 to-amber-500",
   },
   {
-    date: "Oct 5, 2025",
-    title: "Grand Finale",
-    description: "Winners announced and prizes awarded!",
-    icon: "🏆",
-    color: "from-pink-400 to-rose-600",
+    date: "24th September 2025",
+    time: "1:00 PM - 6:00 PM",
+    title: "Workshops & Mentoring",
+    description: "Technical workshops and one-on-one mentoring sessions.",
+    icon: "🎓",
+    color: "from-red-500 to-orange-500",
+  },
+  {
+    date: "24th September 2025",
+    time: "6:00 PM - 7:00 PM",
+    title: "Dinner Break",
+    description: "Dinner and informal networking.",
+    icon: "🍲",
+    color: "from-pink-500 to-rose-500",
+  },
+  {
+    date: "24th September 2025",
+    time: "7:00 PM - 11:59 PM",
+    title: "Late Night Hacking",
+    description: "Continue working on projects with mentor support.",
+    icon: "🌙",
+    color: "from-indigo-500 to-purple-500",
+  },
+  {
+    date: "25th September 2025",
+    time: "12:00 AM - 6:00 AM",
+    title: "Overnight Hacking",
+    description: "All-night coding session with snacks and refreshments.",
+    icon: "🌃",
+    color: "from-blue-600 to-indigo-600",
+  },
+  {
+    date: "25th September 2025",
+    time: "6:00 AM - 7:00 AM",
+    title: "Sunrise & Breakfast",
+    description: "Early morning refreshments and team check-ins.",
+    icon: "🌅",
+    color: "from-amber-500 to-yellow-500",
+  },
+  {
+    date: "25th September 2025",
+    time: "7:00 AM - 10:00 AM",
+    title: "Final Submissions",
+    description: "Complete your projects and submit before the deadline.",
+    icon: "⏱️",
+    color: "from-red-500 to-pink-700",
+  },
+  {
+    date: "25th September 2025",
+    time: "10:00 AM - 11:00 AM",
+    title: "Closing Ceremony & Awards",
+    description: "Winners announced, prizes distributed, and closing remarks.",
+    icon: "🎉",
+    color: "from-green-500 to-emerald-700",
   },
 ];
 
 export default function TimelineSection() {
+  // Group events by date
+  const eventsByDate = timelineEvents.reduce((acc, event) => {
+    if (!acc[event.date]) {
+      acc[event.date] = [];
+    }
+    acc[event.date].push(event);
+    return acc;
+  }, {} as Record<string, typeof timelineEvents>);
+
   return (
-    <section className="w-full py-20 bg-transparent text-white overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4">
+    <section className="w-full py-12 md:py-20 bg-transparent text-white overflow-hidden">
+      <div className="max-w-6xl mx-auto px-2 sm:px-4">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
+          viewport={{ once: true, margin: "-50px" }}
+          className="text-center mb-10 md:mb-16 px-2"
         >
-          <h2 
+          <h2
             className="text-5xl md:text-6xl font-bold mb-6 tracking-tight"
-            style={{ 
-              color: "#ffd600", 
-              textShadow: "0 0 20px rgba(255,214,0,0.5)"
+            style={{
+              color: "#ffd600",
+              textShadow: "0 0 20px rgba(255,214,0,0.5)",
             }}
           >
-            Timeline
+            Event Schedule
           </h2>
+          <p className="text-xl text-white/80 max-w-2xl mx-auto mb-8">
+            Two days of intense hacking, learning, and innovation at VIT Chennai
+          </p>
           <div className="w-24 h-1 bg-gradient-to-r from-[#ffd600] to-[#00e5ff] mx-auto rounded-full"></div>
         </motion.div>
 
-        <div className="relative">
-          {/* Central Timeline Line */}
-          <motion.div 
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
-            viewport={{ once: true }}
-            className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-[#ffd600] via-[#00e5ff] to-[#ff6a00] origin-top"
-            style={{
-              boxShadow: "0 0 20px rgba(255,214,0,0.6), 0 0 40px rgba(0,229,255,0.4)"
-            }}
-          />
-          
-          <div className="space-y-24">
-            {timelineEvents.map((event, idx) => (
-              <motion.div
-                key={event.date}
-                initial={{ opacity: 0, x: idx % 2 === 0 ? -100 : 100, y: 50 }}
-                whileInView={{ opacity: 1, x: 0, y: 0 }}
-                transition={{ 
-                  duration: 0.8, 
-                  delay: idx * 0.15,
-                  type: "spring",
-                  stiffness: 100
-                }}
-                viewport={{ once: true }}
-                className="relative flex items-center"
-              >
-                {/* Content Cards */}
-                <div className={`w-1/2 ${idx % 2 === 0 ? "pr-12" : "pl-12"} flex ${idx % 2 === 0 ? "justify-end" : "justify-start"}`}>
-                  {(idx % 2 === 0) && (
-                    <motion.div 
-                      whileHover={{ 
-                        scale: 1.05,
-                        rotateY: 5,
-                        rotateX: 5
-                      }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                      className={`relative group bg-gradient-to-br ${event.color} rounded-2xl shadow-2xl p-8 w-full max-w-md backdrop-blur-sm border border-white/20`}
-                      style={{
-                        transformStyle: "preserve-3d",
-                        boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5), 0 0 30px rgba(255,255,255,0.1)"
-                      }}
-                    >
-                      {/* Glow Effect */}
-                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      
-                      {/* Icon */}
-                      <div className="text-4xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                        {event.icon}
-                      </div>
-                      
-                      <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-yellow-100 transition-colors duration-300">
-                        {event.title}
-                      </h3>
-                      <p className="text-white/90 mb-4 leading-relaxed">
-                        {event.description}
-                      </p>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-white/80 rounded-full animate-pulse"></div>
-                        <span className="text-sm text-white/80 font-mono tracking-wider">
-                          {event.date}
-                        </span>
-                      </div>
-                    </motion.div>
-                  )}
-                </div>
+        {/* Timeline by Days */}
+        {Object.entries(eventsByDate).map(([date, events], dayIndex) => (
+          <div key={date} className="mb-16">
+            {/* Day Header */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: dayIndex * 0.2 }}
+              viewport={{ once: true }}
+              className="mb-8 text-center"
+            >
+              <div className="inline-block bg-gradient-to-r from-[#ffd600] to-[#ff8a00] text-black px-6 py-2 rounded-full text-sm font-semibold">
+                {date}
+              </div>
+            </motion.div>
 
-                {/* Center Node */}
-                <motion.div 
-                  initial={{ scale: 0, rotate: -180 }}
-                  whileInView={{ scale: 1, rotate: 0 }}
-                  transition={{ 
-                    duration: 0.6, 
-                    delay: idx * 0.15 + 0.3,
+            <div className="relative space-y-6">
+              {events.map((event, idx) => (
+                <motion.div
+                  key={`${date}-${idx}`}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: idx * 0.1,
                     type: "spring",
-                    stiffness: 200
-                  }}
-                  whileHover={{ 
-                    scale: 1.3,
-                    rotate: 360,
-                    boxShadow: "0 0 40px rgba(255,214,0,0.8)"
+                    stiffness: 100,
                   }}
                   viewport={{ once: true }}
-                  className="z-20 w-16 h-16 rounded-full bg-gradient-to-br from-[#ffd600] to-[#00e5ff] border-4 border-white/90 flex items-center justify-center shadow-2xl mx-4 cursor-pointer"
-                  style={{
-                    boxShadow: "0 0 30px rgba(255,214,0,0.6), inset 0 0 20px rgba(255,255,255,0.2)"
-                  }}
+                  className="relative"
                 >
-                  <motion.span 
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ delay: idx * 0.15 + 0.5 }}
-                    className="font-bold text-xl text-black drop-shadow-lg"
-                  >
-                    {idx + 1}
-                  </motion.span>
-                </motion.div>
+                  {/* Time Badge */}
+                  <div className="flex items-center mb-3 md:absolute md:left-1/2 md:transform md:-translate-x-1/2 md:-top-8">
+                    <div className="bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20 text-sm font-medium">
+                      {event.time}
+                    </div>
+                  </div>
 
-                <div className={`w-1/2 ${idx % 2 !== 0 ? "pl-12" : "pr-12"} flex ${idx % 2 !== 0 ? "justify-start" : "justify-end"}`}>
-                  {(idx % 2 !== 0) && (
-                    <motion.div 
-                      whileHover={{ 
-                        scale: 1.05,
-                        rotateY: -5,
-                        rotateX: 5
-                      }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                      className={`relative group bg-gradient-to-bl ${event.color} rounded-2xl shadow-2xl p-8 w-full max-w-md backdrop-blur-sm border border-white/20`}
-                      style={{
-                        transformStyle: "preserve-3d",
-                        boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5), 0 0 30px rgba(255,255,255,0.1)"
-                      }}
-                    >
-                      {/* Glow Effect */}
-                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-bl from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      
+                  {/* Content Card */}
+                  <div className="relative group bg-gradient-to-br from-gray-900/80 to-gray-800/80 rounded-2xl shadow-2xl p-5 sm:p-6 w-full backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300">
+                    <div className="flex items-start space-x-4">
                       {/* Icon */}
-                      <div className="text-4xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                      <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${event.color} flex items-center justify-center text-2xl`}>
                         {event.icon}
                       </div>
-                      
-                      <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-yellow-100 transition-colors duration-300">
-                        {event.title}
-                      </h3>
-                      <p className="text-white/90 mb-4 leading-relaxed">
-                        {event.description}
-                      </p>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-white/80 rounded-full animate-pulse"></div>
-                        <span className="text-sm text-white/80 font-mono tracking-wider">
-                          {event.date}
-                        </span>
-                      </div>
-                    </motion.div>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </div>
 
-          {/* Floating Particles */}
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-[#ffd600] rounded-full opacity-60"
-              style={{
-                left: `${20 + i * 15}%`,
-                top: `${10 + i * 20}%`,
-              }}
-              animate={{
-                y: [-20, 20, -20],
-                opacity: [0.3, 0.8, 0.3],
-              }}
-              transition={{
-                duration: 3 + i * 0.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-          ))}
-        </div>
+                      {/* Content */}
+                      <div className="flex-1">
+                        <h3 className="text-xl font-bold text-white mb-1.5">
+                          {event.title}
+                        </h3>
+                        <p className="text-white/80 text-sm leading-relaxed">
+                          {event.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

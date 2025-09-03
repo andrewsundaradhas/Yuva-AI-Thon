@@ -7,8 +7,10 @@ const sections = [
   { id: "about", label: "About" },
   { id: "tracks", label: "Tracks" },
   { id: "prizes", label: "Prizes" },
+  { id: "timeline", label: "Timeline" },
   { id: "register", label: "Register" },
   { id: "contact", label: "Contact" },
+  { id: "follow", label: "Follow Us", isSpecial: true },
 ]
 
 export function Navbar() {
@@ -103,11 +105,24 @@ export function Navbar() {
                     data-link-id={s.id}
                     href={`#${s.id}`}
                     className={cn(
-                      "relative block rounded-md px-3 py-2 text-sm transition-colors",
-                      active === s.id ? "text-white" : "text-white/75 hover:text-white",
+                      "relative block rounded-md px-3 py-2 text-sm transition-all duration-300",
+                      active === s.id 
+                        ? "text-white font-medium" 
+                        : s.isSpecial 
+                          ? "bg-gradient-to-r from-yellow-500 to-amber-500 text-black hover:shadow-[0_0_15px_rgba(255,214,0,0.5)] hover:scale-105"
+                          : "text-white/75 hover:text-white hover:bg-white/5"
                     )}
+                    style={s.isSpecial ? {
+                      boxShadow: '0 0 10px rgba(255, 214, 0, 0.3)'
+                    } : {}}
                   >
                     {s.label}
+                    {s.isSpecial && (
+                      <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-yellow-500"></span>
+                      </span>
+                    )}
                   </a>
                 </li>
               ))}
@@ -154,18 +169,31 @@ export function Navbar() {
                   href={`#${s.id}`}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "block rounded-lg px-4 py-3 text-base font-medium transition-colors active:scale-95",
+                    "block rounded-lg px-4 py-3 text-base font-medium transition-all duration-300 active:scale-95",
                     "focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
                     active === s.id 
-                      ? "bg-white/10 text-yellow-400" 
-                      : "text-white/90 hover:bg-white/5 active:bg-white/10"
+                      ? s.isSpecial
+                        ? "bg-gradient-to-r from-yellow-500 to-amber-500 text-black"
+                        : "bg-white/10 text-yellow-400"
+                      : s.isSpecial
+                        ? "bg-gradient-to-r from-yellow-500/90 to-amber-500/90 text-black hover:shadow-[0_0_15px_rgba(255,214,0,0.3)]"
+                        : "text-white/90 hover:bg-white/5 active:bg-white/10"
                   )}
                   style={{
                     WebkitTapHighlightColor: 'rgba(255, 214, 0, 0.2)',
-                    touchAction: 'manipulation'
+                    touchAction: 'manipulation',
+                    ...(s.isSpecial ? { boxShadow: '0 0 10px rgba(255, 214, 0, 0.3)' } : {})
                   }}
                 >
-                  {s.label}
+                  <div className="flex items-center justify-between">
+                    {s.label}
+                    {s.isSpecial && (
+                      <span className="flex h-2.5 w-2.5">
+                        <span className="animate-ping absolute inline-flex h-2.5 w-2.5 rounded-full bg-yellow-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-yellow-500"></span>
+                      </span>
+                    )}
+                  </div>
                 </a>
               </li>
             ))}

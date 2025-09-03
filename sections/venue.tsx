@@ -42,7 +42,7 @@ export default function VenueSection() {
               <div className="relative h-96 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
                 {/* Embedded Map Placeholder - Replace with actual map */}
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0853788469777!2d80.15300931482174!3d12.970682290856934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525d16c2b2b4b7%3A0x3e3b7e3c1f3a2b3c!2sVellore%20Institute%20of%20Technology%20-%20Chennai!5e0!3m2!1sen!2sin!4v1634567890123!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.057131804875!2d80.15893931542383!3d12.84066599092824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5259af11a1a5a5%3A0xca3c6e3f6f5b8c9e!2sVellore%20Institute%20of%20Technology%20-%20VIT%20Chennai!5e0!3m2!1sen!2sin!4v1634567890123!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -50,6 +50,7 @@ export default function VenueSection() {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   className="rounded-2xl"
+                  title="VIT Chennai Campus Location"
                 ></iframe>
               </div>
 
@@ -93,11 +94,46 @@ export default function VenueSection() {
                   <div className="text-4xl">🏛️</div>
                   <div>
                     <h3 className="text-3xl font-bold text-white mb-2">MG Auditorium</h3>
-                    <p className="text-[#00e5ff] font-semibold">Main Competition Venue</p>
+                    <p className="text-[#00e5ff] font-semibold">VIT Chennai Campus</p>
                   </div>
                 </div>
 
                 <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-yellow-400 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <div>
+                      <p className="text-white/90">Vandalur - Kelambakkam Road,</p>
+                      <p className="text-white/90">Chennai, Tamil Nadu 600127</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex space-x-4 pt-2">
+                    <a 
+                      href="https://www.google.com/maps/dir//Vellore+Institute+of+Technology+-+VIT+Chennai,+Vandalur+-+Kelambakkam+Rd,+Chennai,+Tamil+Nadu+600127/@12.8384711,80.1567507,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3a5259af11a1a5a5:0xca3c6e3f6f5b8c9e!2m2!1d80.1589393!2d12.8406659"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#ffd600] to-[#ff8a00] text-black rounded-lg font-medium hover:opacity-90 transition-opacity"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                      </svg>
+                      Get Directions
+                    </a>
+                    <a 
+                      href="https://www.google.com/maps/place/Vellore+Institute+of+Technology+-+VIT+Chennai/@12.840666,80.1589393,17z/data=!3m1!4b1!4m5!3m4!1s0x3a5259af11a1a5a5:0xca3c6e3f6f5b8c9e!8m2!3d12.840666!4d80.1589393"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center px-4 py-2 bg-white/10 text-white rounded-lg font-medium hover:bg-white/20 transition-colors"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                      </svg>
+                      View on Maps
+                    </a>
+                  </div>
                   <div className="flex items-start space-x-3">
                     <div className="text-[#ffd600] text-xl">📍</div>
                     <div>
