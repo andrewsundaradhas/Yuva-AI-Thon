@@ -8,6 +8,8 @@ import Countdown from "@/components/countdown"
 import AboutSection from "@/sections/about"
 import TracksSection from "@/sections/tracks"
 import PrizesSection from "@/sections/prizes"
+import TimelineSection from "@/sections/timeline"
+import VenueSection from "@/sections/venue"
 import RegistrationSection from "@/sections/registration"
 import ContactSection from "@/sections/contact"
 import Footer from "@/sections/footer"
@@ -144,6 +146,8 @@ export default function HomePage() {
             <AboutSection />
             <TracksSection />
             <PrizesSection />
+            <TimelineSection />
+            <VenueSection />
             <RegistrationSection />
             <ContactSection />
             <Footer />
