@@ -17,17 +17,19 @@ const inter = Inter({
   variable: "--font-inter",
 })
 
+// Viewport configuration
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover',
+  themeColor: '#0a0b0f',
+};
+
 export const metadata: Metadata = {
   title: "YUVA AI-Thon - National Hackathon",
   description: "Join YUVA AI-Thon, a national hackathon at VIT Chennai on Sep 24-25, 2025",
   generator: "v0.app",
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-    viewportFit: 'cover'
-  },
-  themeColor: '#0a0b0f',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',

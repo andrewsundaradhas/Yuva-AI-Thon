@@ -12,8 +12,14 @@ import TimelineSection from "@/sections/timeline"
 import VenueSection from "@/sections/venue"
 import RegistrationSection from "@/sections/registration"
 import ContactSection from "@/sections/contact"
-import FollowUs from "@/sections/follow-us"
+import dynamic from 'next/dynamic';
 import Footer from "@/sections/footer"
+
+// Dynamically import FollowUs component to prevent circular dependencies
+const FollowUs = dynamic(() => import('@/sections/follow-us'), {
+  ssr: false,
+  loading: () => <div className="h-96 flex items-center justify-center">Loading social links...</div>
+});
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 

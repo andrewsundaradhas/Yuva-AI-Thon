@@ -1,25 +1,44 @@
-import { motion } from "framer-motion"
-import { Linkedin, Instagram } from "lucide-react"
+import { motion, Variants } from "framer-motion"
+import dynamic from 'next/dynamic';
+
+// Dynamically import icons to prevent circular dependencies
+const LinkedinIcon = dynamic(() => import('lucide-react').then(mod => mod.Linkedin), { 
+  ssr: false,
+  loading: () => <div className="w-8 h-8 md:w-10 md:h-10 bg-gray-200 rounded-full animate-pulse" />
+});
+
+const InstagramIcon = dynamic(() => import('lucide-react').then(mod => mod.Instagram), { 
+  ssr: false,
+  loading: () => <div className="w-8 h-8 md:w-10 md:h-10 bg-gray-200 rounded-full animate-pulse" />
+});
+
+interface SocialLink {
+  name: string;
+  icon: React.ReactNode;
+  url: string;
+  color: string;
+  hover: string;
+}
 
 export default function FollowUs() {
-  const socialLinks = [
+  const socialLinks: SocialLink[] = [
     {
       name: 'LinkedIn',
-      icon: <Linkedin className="w-8 h-8 md:w-10 md:h-10" />,
+      icon: <LinkedinIcon className="w-8 h-8 md:w-10 md:h-10" />,
       url: 'https://www.linkedin.com/company/yuva-ai-thon',
       color: 'from-blue-500 to-blue-700',
       hover: 'hover:shadow-[0_0_30px_rgba(10,102,194,0.5)]'
     },
     {
       name: 'Instagram',
-      icon: <Instagram className="w-8 h-8 md:w-10 md:h-10" />,
+      icon: <InstagramIcon className="w-8 h-8 md:w-10 md:h-10" />,
       url: 'https://www.instagram.com/yuva.aithon',
       color: 'from-pink-500 to-purple-600',
       hover: 'hover:shadow-[0_0_30px_rgba(225,48,108,0.5)]'
     }
   ]
 
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -27,9 +46,9 @@ export default function FollowUs() {
         staggerChildren: 0.2
       }
     }
-  }
+  };
 
-  const item = {
+  const item: Variants = {
     hidden: { opacity: 0, y: 20 },
     show: { 
       opacity: 1, 
