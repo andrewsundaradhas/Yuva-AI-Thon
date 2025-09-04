@@ -120,7 +120,13 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-monaspace-xenon;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-monaspace-neon font-bold;
+  }
+  .display-text {
+    @apply font-monaspace-argon;
   }
 }
 

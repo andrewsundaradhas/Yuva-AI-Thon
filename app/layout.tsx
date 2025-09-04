@@ -1,22 +1,10 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Analytics } from "@vercel/analytics/next"
-import { Space_Grotesk, Inter } from "next/font/google"
 import { Suspense } from "react"
 import { Toaster } from "@/components/ui/toaster"
 import "./globals.css"
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-space-grotesk",
-})
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-})
+import { monaspace_neon, monaspace_argon, monaspace_xenon } from './fonts'
 
 // Viewport configuration
 export const viewport = {
@@ -51,8 +39,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} antialiased`}>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased bg-black text-white`}>
+    <html lang="en" className={`${monaspace_neon.variable} ${monaspace_argon.variable} ${monaspace_xenon.variable} antialiased`}>
+      <body className={`${monaspace_xenon.variable} font-monaspace-xenon antialiased bg-black text-white`}>
         <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
         <Toaster />
         <Analytics />

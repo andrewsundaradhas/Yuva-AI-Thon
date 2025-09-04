@@ -61,7 +61,7 @@ export default function Events() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <h2 className="text-6xl md:text-7xl font-bold tracking-tight mb-6">
+          <h2 className="text-6xl md:text-7xl font-bold tracking-tight mb-6 font-migha">
             <span className="bg-gradient-to-r from-[#ffd600] via-white to-[#ffd600] bg-clip-text text-transparent">
               Event Gallery
             </span>
@@ -129,7 +129,7 @@ export default function Events() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
                   >
-                    <h3 className="text-xl md:text-2xl font-bold text-white mb-2 transform group-hover:translate-y-0 transition-transform duration-500">
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-2 transform group-hover:translate-y-0 transition-transform duration-500 font-migha">
                       {image.title}
                     </h3>
                     <p className="text-white/80 transform group-hover:translate-y-0 transition-transform duration-500">
