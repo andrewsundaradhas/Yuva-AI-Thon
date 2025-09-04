@@ -139,6 +139,8 @@ export function GalaxyCanvas({ mode = "landing", onZoomComplete, className }: Ga
       createStarSprite(colors[1].r, colors[1].g, colors[1].b, 24),
     ]
     
+    let { particles, cx, cy, maxR } = spawnParticles(canvas.width / dpr, canvas.height / dpr)
+
     // Pre-warm the animation by running a few frames in advance
     const warmupFrames = 3
     for (let i = 0; i < warmupFrames; i++) {
@@ -149,8 +151,6 @@ export function GalaxyCanvas({ mode = "landing", onZoomComplete, className }: Ga
         else if (p.radius > maxR) p.radius = 12
       })
     }
-
-    let { particles, cx, cy, maxR } = spawnParticles(canvas.width / dpr, canvas.height / dpr)
 
     // time-based animation with throttling
     lastTsRef.current = performance.now()
