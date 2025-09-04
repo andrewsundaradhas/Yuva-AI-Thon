@@ -14,6 +14,7 @@ import RegistrationSection from "@/sections/registration"
 import ContactSection from "@/sections/contact"
 import dynamic from 'next/dynamic';
 import Footer from "@/sections/footer"
+import PrismaticBurst from '@/components/PrismaticBurst';
 
 // Dynamically import FollowUs component to prevent circular dependencies
 const FollowUs = dynamic(() => import('@/sections/follow-us'), {
@@ -51,32 +52,63 @@ export default function HomePage() {
       {/* Galaxy background */}
       {phase !== "site" && (
         <GalaxyCanvas mode="landing" onZoomComplete={handleZoomComplete} className="fixed inset-0 z-0" />
+        
       )}
 
       {phase === "landing" && null}
 
       {/* Core overlay (post-zoom): reveal hero + Continue ONLY */}
       {phase === "core" && (
+        <div>
         <section className="relative z-20 flex min-h-screen flex-col items-center justify-center px-4 sm:px-6 text-center">
+
+        <div className="absolute inset-0 z-0">
+          <PrismaticBurst
+            animationType="rotate3d"
+            intensity={2}
+            speed={0.5}
+            distort={1.0}
+            paused={false}
+            offset={{ x: 0, y: 0 }}
+            hoverDampness={0.25}
+            rayCount={24}
+            mixBlendMode="lighten"
+            colors={['#71f48b', '#f1d30e', '#f4870b']}
+          />
+        </div>
+          
           <div className="w-full max-w-4xl mx-auto px-4 sm:px-6">
-            <h2
-              className={cn(
-                "text-balance font-sans text-4xl xs:text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-tight",
-                "animate-[flicker_2.2s_ease-in-out_infinite]",
-                "px-2 sm:px-4"
-              )}
-              style={{ 
-                color: "#ffd600", 
-                textShadow: "0 0 18px rgba(255,214,0,0.6)",
-                WebkitTextSizeAdjust: '100%',
-                textSizeAdjust: '100%'
-              }}
-            >
-              Yuva presents Yuva AI-Thon
-            </h2>
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center space-y-4">
+              {/* Logo */}
+              <img 
+                src="/logos/yuva.jpg" 
+                alt="Yuva logo" 
+                className="w-32 h-auto mb-2" 
+              />
+
+              {/* Presents */}
+              <p className="text-white text-lg sm:text-xl">presents</p> 
+
+              {/* Title */}
+              <h2
+                className={cn(
+                  "text-balance font-sans text-4xl xs:text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-tight",
+                  "animate-[flicker_2.2s_ease-in-out_infinite]",
+                  "px-2 sm:px-4"
+                )}
+                style={{ 
+                  color: "#ffd600", 
+                  textShadow: "0 0 18px rgba(255,214,0,0.6)",
+                  WebkitTextSizeAdjust: '100%',
+                  textSizeAdjust: '100%'
+                }}
+              >
+                Yuva AI-Thon
+              </h2>
+
             <p className="mt-4 text-white/90 text-base sm:text-lg md:text-xl px-2">
-              National Hackathon, VIT Chennai
-              <span className="block sm:inline">Sep 24–25, 2025</span>
+              A National Hackathon, VIT Chennai
+              <span className="block sm:inline">&nbsp;Sep 24–25, 2025</span>
             </p>
             <div className="mt-8 sm:mt-10 px-2">
               <Button
@@ -97,13 +129,14 @@ export default function HomePage() {
                   userSelect: 'none'
                 }}
                 aria-label="Continue to main site"
-              >
+                >
                 <span className="relative z-10 block">Continue</span>
                 <span
                   className="pointer-events-none absolute inset-0 translate-x-[-120%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-[120%]"
                   aria-hidden="true"
-                />
+                  />
               </Button>
+            </div>
             </div>
           </div>
           <style>
@@ -140,6 +173,7 @@ export default function HomePage() {
             `}
           </style>
         </section>
+        </div>
       )}
 
       {/* Main site */}
