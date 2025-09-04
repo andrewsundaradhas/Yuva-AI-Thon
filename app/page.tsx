@@ -22,6 +22,7 @@ const FollowUs = dynamic(() => import('@/sections/follow-us'), {
 });
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import Events from "@/sections/Events"
 
 // Color system (5 total):
 // 1) Primary: neon yellow #ffd600
@@ -152,10 +153,11 @@ export default function HomePage() {
             <Countdown />
             <AboutSection />
             <TracksSection />
-            <PrizesSection />
-            <TimelineSection />
-            <VenueSection />
             <RegistrationSection />
+            <TimelineSection />
+            <PrizesSection />
+            <VenueSection />
+            <Events />
             <ContactSection />
             <FollowUs />
             <Footer />
