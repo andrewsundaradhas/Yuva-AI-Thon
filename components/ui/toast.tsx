@@ -40,14 +40,19 @@ const toastVariants = cva(
   }
 )
 
+interface ToastProps extends React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root>,
+  VariantProps<typeof toastVariants> {
+  onOpenChange?: (open: boolean) => void
+}
+
 const Toast = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Root>,
-  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> &
-    VariantProps<typeof toastVariants>
->(({ className, variant, ...props }, ref) => {
+  ToastProps
+>(({ className, variant, onOpenChange, ...props }, ref) => {
   return (
     <ToastPrimitives.Root
       ref={ref}
+      onOpenChange={onOpenChange}
       className={cn(toastVariants({ variant }), className)}
       {...props}
     />

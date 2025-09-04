@@ -1,47 +1,33 @@
 "use client"
 
-import * as React from "react"
+export const TOAST_LIMIT = 1
+export const TOAST_REMOVE_DELAY = 1000000
 
-export type ToastActionElement = React.ReactElement<{
-  altText: string;
-  children: React.ReactNode;
-  onClick: () => void;
-  className?: string;
-}>
+export type ToastVariant = "default" | "destructive"
 
-export type ToastVariant = "default" | "destructive" | null
-
-export type ToastProps = {
-  id: string;
-  variant?: ToastVariant;
-  className?: string;
-  onOpenChange?: (open: boolean) => void;
-  duration?: number;
+export interface ToasterToast {
+  id: string
+  title?: string
+  description?: string
+  variant?: ToastVariant
+  duration?: number
+  onDismiss?: () => void
+  action?: {
+    label: string
+    onClick: () => void
+  }
 }
 
-export type ToasterToast = ToastProps & {
-  title?: React.ReactNode;
-  description?: React.ReactNode;
-  action?: ToastActionElement;
-}
-
-export const toastVariants = {
-  ADD_TOAST: "ADD_TOAST",
-  UPDATE_TOAST: "UPDATE_TOAST",
-  DISMISS_TOAST: "DISMISS_TOAST",
-  REMOVE_TOAST: "REMOVE_TOAST",
-} as const
-
-export type ToastType = keyof typeof toastVariants
-
-export type ToastAction = {
-  type: ToastType;
-  toast?: Partial<ToasterToast>;
-  toastId?: string;
-}
+export type ToastAction =
+  | { type: "ADD_TOAST"; toast: ToasterToast }
+  | { type: "UPDATE_TOAST"; toast: Partial<ToasterToast> }
+  | { type: "DISMISS_TOAST"; toastId?: string }
+  | { type: "REMOVE_TOAST"; toastId?: string }
 
 export interface ToastState {
   toasts: ToasterToast[]
 }
 
-export type Toast = Omit<ToasterToast, 'id'>
+export type Toast = Omit<ToasterToast, "id">
+
+export const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>()
