@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 
-const GOOGLE_FORM_URL = "https://forms.gle/your-form-id" // Replace with actual GForm URL when available
+const GOOGLE_FORM_URL = "https://forms.gle/Epd6vNvYhANQiZ489"; // Replace with actual GForm URL when available
 
 export default function RegistrationSection() {
   const openForm = () => {

@@ -78,8 +78,8 @@ export function Navbar() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         {/* Logos + title */}
         <div className="flex items-center gap-2 md:gap-3">
-          <img src="/logos/yuva.jpg" alt="YUVA logo" className="h-10 w-[86px] object-contain opacity-100" />
-          <img src="/logos/yi.png" alt="Yi (Young Indians) logo" className="h-10 w-[64px] object-contain opacity-100" />
+          <img src="/logos/yuva.jpg" alt="YUVA logo" className="h-24 w-[104px] object-contain opacity-100" />
+          <img src="/logos/yi.png" alt="Yi (Young Indians) logo" className="h-12 w-[76px] object-contain opacity-100" />
           <span
             className="ml-2 hidden text-sm font-semibold tracking-wide md:inline"
             style={{ color: "#ffd600", textShadow: "0 0 8px rgba(255,214,0,0.35)" }}

@@ -52,48 +52,114 @@ function Countdown({ onComplete, enableSound = false }: { onComplete?: () => voi
 
   return (
     <section id="countdown" aria-labelledby="countdown-title" className="relative py-16 md:py-24">
-      <div className="mx-auto max-w-5xl px-6">
-        <h2 id="countdown-title" className="text-2xl md:text-3xl font-semibold text-[#FFD600] text-balance mb-6">
-          Countdown to YUVA AI-Thon
-        </h2>
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="flex flex-col items-center text-center mb-12">
+          <h2 
+            id="countdown-title" 
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-gradient-to-r from-[#FFD600] via-[#FFA500] to-[#FFD600] bg-clip-text text-balance mb-4 animate-gradient-x"
+          >
+            Countdown to YUVA AI-Thon
+          </h2>
+          <div className="h-1 w-24 bg-gradient-to-r from-[#FFD600] to-[#FFA500] rounded-full mb-3"></div>
+        </div>
+
         <div
-          className={`relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-6 md:p-10 overflow-hidden`}
-          style={{ boxShadow: "0 0 0 1px rgba(255,214,0,0.1), 0 8px 30px rgba(0,0,0,0.45)" }}
+          className={`relative rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-transparent backdrop-blur-xl p-8 md:p-12 overflow-hidden transform hover:scale-[1.01] transition-all duration-300`}
+          style={{ 
+            boxShadow: "0 0 0 1px rgba(255,214,0,0.1), 0 8px 40px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1)",
+          }}
           role="timer"
           aria-live="polite"
           aria-atomic="false"
           aria-label={ariaLabel}
         >
+          {/* Animated gradient border */}
+          <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#FFD600] via-[#FFA500] to-[#FFD600] opacity-20 animate-gradient-x"></div>
+          
+          {/* Glow effect */}
           <div
-            className={`pointer-events-none absolute inset-0 rounded-2xl ${celebrate ? "animate-[pulseGlow_1.2s_ease-in-out_infinite]" : ""}`}
+            className={`pointer-events-none absolute inset-0 rounded-3xl transition-opacity duration-500 ${
+              celebrate ? "animate-[pulseGlow_1.2s_ease-in-out_infinite] opacity-100" : "opacity-0"
+            }`}
             style={{
-              boxShadow: celebrate ? "0 0 0 2px rgba(255,214,0,0.6), 0 0 40px rgba(255,214,0,0.45)" : undefined,
+              boxShadow: celebrate ? "0 0 60px 10px rgba(255,214,0,0.3), inset 0 0 30px rgba(255,214,0,0.3)" : undefined,
             }}
             aria-hidden="true"
           />
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+
+          <div className="relative grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {[
               { label: "Days", value: t.days },
               { label: "Hours", value: t.hours },
               { label: "Minutes", value: t.mins },
               { label: "Seconds", value: t.secs },
-            ].map((item) => (
+            ].map((item, index) => (
               <div
                 key={item.label}
-                className="flex flex-col items-center justify-center rounded-xl bg-black/30 border border-white/10 py-6 md:py-8 hover:shadow-[0_0_24px_rgba(255,214,0,.2)] transition-shadow"
+                className="group relative flex flex-col items-center justify-center"
+                style={{
+                  animation: `fadeInScale 0.5s ease-out ${index * 0.1}s backwards`
+                }}
               >
-                <div className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-[#FFD600] tabular-nums">
-                  {pad(item.value)}
+                {/* Card background with hover effect */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/10 to-transparent border border-white/20 backdrop-blur-lg transform transition-all duration-300 group-hover:scale-105 group-hover:border-[#FFD600]/40"></div>
+                
+                {/* Content */}
+                <div className="relative p-6 md:p-8 w-full h-full flex flex-col items-center justify-center">
+                  <div className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-gradient-to-b from-[#FFD600] to-[#FFA500] bg-clip-text tabular-nums transform transition-transform duration-300 group-hover:scale-110">
+                    {pad(item.value)}
+                  </div>
+                  <div className="mt-3 text-sm md:text-base font-medium text-white/90 tracking-wide uppercase transition-colors duration-300 group-hover:text-[#FFD600]">
+                    {item.label}
+                  </div>
                 </div>
-                <div className="mt-2 text-sm md:text-base text-white/80">{item.label}</div>
               </div>
             ))}
           </div>
-          <p className="mt-6 text-white/70 text-pretty">Event starts on September 24, 2025 at 00:00 (local time).</p>
+
+          <div className="relative mt-10 text-center">
+            <p className="text-lg text-white/80 font-medium tracking-wide">
+              Event starts on{" "}
+              <span className="text-[#FFD600] font-semibold">September 24, 2025</span>
+              {" "}at{" "}
+              <span className="text-[#FFD600] font-semibold">00:00</span>
+              {" "}(local time)
+            </p>
+          </div>
+
           {celebrate && <ConfettiCanvas />}
           <audio ref={audioRef} src="/celebrate.mp3" preload="none" />
+
+          {/* Decorative elements */}
+          <div className="absolute top-0 left-0 w-64 h-64 bg-[#FFD600] rounded-full opacity-5 blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute bottom-0 right-0 w-64 h-64 bg-[#FFA500] rounded-full opacity-5 blur-3xl translate-x-1/2 translate-y-1/2"></div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeInScale {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes gradient-x {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+      `}</style>
     </section>
   )
 }
