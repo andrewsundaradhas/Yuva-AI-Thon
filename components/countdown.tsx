@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react"
 import ConfettiCanvas from "./confetti-canvas"
+import LetterGlitch from "./LetterGlitch"
 
 const EVENT_START_ISO = "2025-09-24T00:00:00"
 
@@ -52,7 +53,18 @@ function Countdown({ onComplete, enableSound = false }: { onComplete?: () => voi
 
   return (
     <section id="countdown" aria-labelledby="countdown-title" className="relative py-16 md:py-24">
-      <div className="mx-auto max-w-6xl px-6">
+      {/* LetterGlitch background - only for countdown section */}
+      <div className="absolute inset-0 z-0">
+        <LetterGlitch
+          glitchColors={['#1a1a2e', '#16213e', '#0f0f23']}
+          glitchSpeed={75}
+          centerVignette={false}
+          outerVignette={true}
+          smooth={true}
+        />
+      </div>
+      
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
         <div className="flex flex-col items-center text-center mb-12">
           <h2 
             id="countdown-title" 

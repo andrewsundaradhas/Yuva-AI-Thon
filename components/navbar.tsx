@@ -91,7 +91,7 @@ export function Navbar() {
         {/* Desktop links */}
         <div className="hidden md:block">
           <div className="relative">
-            <ul ref={listRef} className="relative flex items-center gap-3">
+            <ul ref={listRef} className="relative flex items-center text-2xl gap-3">
               {/* moving underline */}
               <span
                 ref={barRef}
@@ -105,7 +105,7 @@ export function Navbar() {
                     data-link-id={s.id}
                     href={`#${s.id}`}
                     className={cn(
-                      "relative block rounded-md px-3 py-2 text-sm transition-all duration-300",
+                      "relative block rounded-md px-3 py-2 text-base transition-all duration-300",
                       active === s.id 
                         ? "text-white font-medium" 
                         : s.isSpecial 
