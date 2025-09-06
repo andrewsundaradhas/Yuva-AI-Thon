@@ -1,5 +1,23 @@
-import localFont from 'next/font/local'
+// Fonts temporarily disabled - font files not found
+// import localFont from 'next/font/local'
 
+// Fallback to system fonts for now
+export const monaspace_neon = {
+  variable: '--font-monaspace-neon',
+  className: 'font-mono'
+}
+
+export const monaspace_argon = {
+  variable: '--font-monaspace-argon', 
+  className: 'font-mono'
+}
+
+export const monaspace_xenon = {
+  variable: '--font-monaspace-xenon',
+  className: 'font-mono'
+}
+
+/*
 // Monaspace Neon - Main display font
 export const monaspace_neon = localFont({
   src: [
@@ -50,3 +68,4 @@ export const monaspace_xenon = localFont({
   ],
   variable: '--font-monaspace-xenon'
 })
+*/

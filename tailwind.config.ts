@@ -10,9 +10,9 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        'monaspace-neon': ['var(--font-monaspace-neon)'],
-        'monaspace-argon': ['var(--font-monaspace-argon)'],
-        'monaspace-xenon': ['var(--font-monaspace-xenon)'],
+        'monaspace-neon': ['var(--font-monaspace-neon)', 'monospace'],
+        'monaspace-argon': ['var(--font-monaspace-argon)', 'monospace'],
+        'monaspace-xenon': ['var(--font-monaspace-xenon)', 'monospace'],
       },
       keyframes: {
         'gradient-x': {
@@ -33,4 +33,5 @@ const config: Config = {
   },
   plugins: [],
 }
+
 export default config
