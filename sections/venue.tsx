@@ -171,25 +171,7 @@ export default function VenueSection() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex flex-wrap gap-3 mt-8">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center space-x-2 bg-[#ffd600] text-black px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#ffd600]/25"
-                  >
-                    <span>🗺️</span>
-                    <span>Get Directions</span>
-                  </motion.button>
-                  
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center space-x-2 border-2 border-[#00e5ff] text-[#00e5ff] px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:bg-[#00e5ff]/10"
-                  >
-                    <span>📱</span>
-                    <span>View on Maps</span>
-                  </motion.button>
-                </div>
+                
               </div>
             </motion.div>
 
