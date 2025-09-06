@@ -181,7 +181,7 @@ export default function HomePage() {
       {phase === "site" && (
         <>
           {/* Subtle animated starfield/nebula background; galaxy is unmounted */}
-        <div className="absolute inset-0 z-0">
+        {/* <div className="absolute inset-0 z-0">
         <Plasma 
             color="#f1d30e"
             speed={0.1}
@@ -190,7 +190,7 @@ export default function HomePage() {
             opacity={0.5}
             mouseInteractive={false}
           />
-        </div>
+        </div> */}
           <StarfieldCanvas opacity={0.35} />
           <Navbar />
           <div ref={siteRef} className="relative z-10">
