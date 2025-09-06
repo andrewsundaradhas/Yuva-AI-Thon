@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import ConfettiCanvas from "./confetti-canvas"
 import LetterGlitch from "./LetterGlitch"
 
-const EVENT_START_ISO = "2025-09-24T00:00:00"
+const EVENT_START_ISO = "2025-09-24T13:00:00"
 
 function pad(n: number) {
   return n.toString().padStart(2, "0")
@@ -72,6 +72,9 @@ function Countdown({ onComplete, enableSound = false }: { onComplete?: () => voi
           >
             Countdown to YUVA AI-Thon
           </h2>
+          <p className="text-lg md:text-xl text-white/80 mb-4">
+            September 24, 2025 • 1:00 PM
+          </p>
           <div className="h-1 w-24 bg-gradient-to-r from-[#FFD600] to-[#FFA500] rounded-full mb-3"></div>
         </div>
 
@@ -134,7 +137,7 @@ function Countdown({ onComplete, enableSound = false }: { onComplete?: () => voi
               Event starts on{" "}
               <span className="text-[#FFD600] font-semibold">September 24, 2025</span>
               {" "}at{" "}
-              <span className="text-[#FFD600] font-semibold">00:00</span>
+              <span className="text-[#FFD600] font-semibold">1:00 PM</span>
               {" "}(local time)
             </p>
           </div>

@@ -71,28 +71,7 @@ export default function ContactSection() {
                   {c.email}
                 </a>
               </p>
-              <div className="mt-2 flex items-center gap-3">
-                <a
-                  href={c.insta}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="rounded-md border border-[#ffd600]/60 p-2 transition-all hover:shadow-[0_0_18px_rgba(255,214,0,0.45)]"
-                  style={{ color: "#ffd600" }}
-                >
-                  <Instagram size={18} />
-                </a>
-                <a
-                  href={c.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  className="rounded-md border border-[#00e5ff]/60 p-2 transition-all hover:shadow-[0_0_18px_rgba(0,229,255,0.45)]"
-                  style={{ color: "#00e5ff" }}
-                >
-                  <Linkedin size={18} />
-                </a>
-              </div>
+              
             </div>
           </article>
         ))}

@@ -143,10 +143,95 @@
 .animate-float-slower {
   animation: floatSlower 9s ease-in-out infinite;
 }
+/* Track section animations */
+@keyframes slideInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes magneticTilt {
+  0% {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  }
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 0.7;
+  }
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.08;
+  }
+  50% {
+    transform: scale(1.05) rotate(5deg);
+    opacity: 0.12;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-slide-in-up {
+  animation: slideInUp 0.8s ease-out forwards;
+}
+
+.animate-magnetic-tilt {
+  transition: transform 0.2s ease-out;
+}
+
+.animate-particle-float {
+  animation: particleFloat 8s ease-in-out infinite;
+}
+
+.animate-icon-pulse {
+  animation: iconPulse 4s ease-in-out infinite;
+}
+
+.shimmer-bg {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-float-slow,
   .animate-float-slower,
-  .marquee {
+  .marquee,
+  .animate-slide-in-up,
+  .animate-magnetic-tilt,
+  .animate-particle-float,
+  .animate-icon-pulse,
+  .shimmer-bg {
     animation: none !important;
+    transform: none !important;
   }
 }

@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils"
 import type { ReactNode } from "react"
+import { useState, useRef } from "react"
 
 export default function TrackCard({
   title,
@@ -14,16 +15,43 @@ export default function TrackCard({
   icon: ReactNode
   glowColor?: string // hex
 }) {
+  const [isHovered, setIsHovered] = useState(false)
+  const cardRef = useRef<HTMLDivElement>(null)
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return
+    const rect = cardRef.current.getBoundingClientRect()
+    const x = e.clientX - rect.left - rect.width / 2
+    const y = e.clientY - rect.top - rect.height / 2
+    
+    const tiltX = (y / rect.height) * -10 // Reduced intensity
+    const tiltY = (x / rect.width) * 10
+    
+    cardRef.current.style.setProperty('--tilt-x', `${tiltX}deg`)
+    cardRef.current.style.setProperty('--tilt-y', `${tiltY}deg`)
+    cardRef.current.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(10px)`
+  }
+
+  const handleMouseLeave = () => {
+    if (!cardRef.current) return
+    setIsHovered(false)
+    cardRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)'
+  }
+
   return (
     <div
+      ref={cardRef}
       className={cn(
-        "group relative rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition-transform",
-        "hover:-translate-y-1 hover:shadow-xl",
+        "group relative rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition-all duration-300 animate-magnetic-tilt",
+        "hover:-translate-y-2 hover:scale-105 hover:shadow-xl cursor-pointer hover:z-10",
       )}
       style={{
         boxShadow: `0 0 0 rgba(0,0,0,0)`,
         backdropFilter: "blur(10px)",
       }}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={handleMouseLeave}
     >
       <div
         className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"

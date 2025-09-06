@@ -270,7 +270,7 @@ export default function AboutSection() {
                   >
                     <p>
                       A <span className="text-[#ffd600] font-bold">high-energy 24-hour hackathon</span> happening on 
-                      <span className="text-white font-bold"> September 24–25, 2025</span> at VIT Chennai. 
+                      <span className="text-white font-bold"> September 24–25, 2025</span> (starting at 1:00 PM) at VIT Chennai. 
                       It brings together <span className="text-[#ffd600] font-bold">500+ innovators</span> to ideate, 
                       prototype, and present bold, real-world-impact projects.
                     </p>
