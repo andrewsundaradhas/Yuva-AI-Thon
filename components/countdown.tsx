@@ -68,7 +68,8 @@ function Countdown({ onComplete, enableSound = false }: { onComplete?: () => voi
         <div className="flex flex-col items-center text-center mb-12">
           <h2 
             id="countdown-title" 
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-gradient-to-r from-[#FFD600] via-[#FFA500] to-[#FFD600] bg-clip-text text-balance mb-4 animate-gradient-x"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#FFD600] bg-gradient-to-r from-[#FFD600] via-[#FFA500] to-[#FFD600] bg-clip-text text-balance mb-4 animate-gradient-x"
+            style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}
           >
             Countdown to YUVA AI-Thon
           </h2>
@@ -121,7 +122,7 @@ function Countdown({ onComplete, enableSound = false }: { onComplete?: () => voi
                 
                 {/* Content */}
                 <div className="relative p-6 md:p-8 w-full h-full flex flex-col items-center justify-center">
-                  <div className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-gradient-to-b from-[#FFD600] to-[#FFA500] bg-clip-text tabular-nums transform transition-transform duration-300 group-hover:scale-110">
+                  <div className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#FFD600] bg-gradient-to-b from-[#FFD600] to-[#FFA500] bg-clip-text tabular-nums transform transition-transform duration-300 group-hover:scale-110" style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                     {pad(item.value)}
                   </div>
                   <div className="mt-3 text-sm md:text-base font-medium text-white/90 tracking-wide uppercase transition-colors duration-300 group-hover:text-[#FFD600]">
@@ -173,6 +174,14 @@ function Countdown({ onComplete, enableSound = false }: { onComplete?: () => voi
           100% {
             background-position: 0% 50%;
           }
+        }
+
+        /* Ensure text gradient works on all devices */
+        .animate-gradient-x {
+          background-size: 200% 200%;
+          -webkit-background-clip: text !important;
+          -webkit-text-fill-color: transparent !important;
+          background-clip: text !important;
         }
       `}</style>
     </section>
