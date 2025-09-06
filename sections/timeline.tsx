@@ -72,7 +72,7 @@ const timelineEvents: TimelineEvent[] = [
 
 export default function TimelineSection() {
   return (
-    <section className="w-full py-12 md:py-20 bg-transparent text-white overflow-hidden min-h-screen">
+    <section className="w-full py-12 md:py-20 bg-transparent text-white overflow-hidden min-h-screen " id='timeline'>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <motion.div
