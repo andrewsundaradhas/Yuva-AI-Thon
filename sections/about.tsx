@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import ScrambledText from "@/components/ScrambledText";
 
 export default function AboutSection() {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -260,12 +261,20 @@ export default function AboutSection() {
                     transition={{ duration: 1, delay: 1.2 }}
                     className="absolute -left-6 top-0 w-1 bg-gradient-to-b from-[#ffd600] to-white rounded-full opacity-60"
                   />
-                  <p className="text-xl md:text-2xl leading-relaxed text-white/95 font-medium pl-6">
-                    A <span className="text-[#ffd600] font-bold">high-energy 24-hour hackathon</span> happening on 
-                    <span className="text-white font-bold"> September 24–25, 2025</span> at VIT Chennai. 
-                    It brings together <span className="text-[#ffd600] font-bold">500+ innovators</span> to ideate, 
-                    prototype, and present bold, real-world-impact projects.
-                  </p>
+                  <ScrambledText 
+                    radius={150}
+                    duration={1.5}
+                    speed={0.3}
+                    scrambleChars="!@#$%^&*()_+-=[]{}|;:,.<>?"
+                    className="text-xl md:text-2xl leading-relaxed text-white/95 font-medium pl-6"
+                  >
+                    <p>
+                      A <span className="text-[#ffd600] font-bold">high-energy 24-hour hackathon</span> happening on 
+                      <span className="text-white font-bold"> September 24–25, 2025</span> at VIT Chennai. 
+                      It brings together <span className="text-[#ffd600] font-bold">500+ innovators</span> to ideate, 
+                      prototype, and present bold, real-world-impact projects.
+                    </p>
+                  </ScrambledText>
                 </motion.div>
 
                 <motion.div variants={item} className="relative">
@@ -275,12 +284,20 @@ export default function AboutSection() {
                     transition={{ duration: 1, delay: 1.5 }}
                     className="absolute -left-6 top-0 w-1 bg-gradient-to-b from-white to-[#ffd600] rounded-full opacity-60"
                   />
-                  <p className="text-lg md:text-xl leading-relaxed text-white/90 pl-6">
-                    Hosted by <span className="text-[#ffd600] font-semibold">YUVA and Yi with SWC</span>, 
-                    expect dynamic mentoring, lightning workshops, and a galaxy of opportunities — 
-                    culminating in <span className="text-white font-semibold">exciting prizes</span> and 
-                    <span className="text-[#ffd600] font-semibold"> internship pathways</span> for standout teams.
-                  </p>
+                  <ScrambledText 
+                    radius={150}
+                    duration={1.5}
+                    speed={0.3}
+                    scrambleChars="!@#$%^&*()_+-=[]{}|;:,.<>?"
+                    className="text-lg md:text-xl leading-relaxed text-white/90 pl-6"
+                  >
+                    <p>
+                      Hosted by <span className="text-[#ffd600] font-semibold">YUVA and Yi with SWC</span>, 
+                      expect dynamic mentoring, lightning workshops, and a galaxy of opportunities — 
+                      culminating in <span className="text-white font-semibold">exciting prizes</span> and 
+                      <span className="text-[#ffd600] font-semibold"> internship pathways</span> for standout teams.
+                    </p>
+                  </ScrambledText>
                 </motion.div>
               </motion.div>
 
