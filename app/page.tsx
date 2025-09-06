@@ -15,6 +15,7 @@ import ContactSection from "@/sections/contact"
 import dynamic from 'next/dynamic';
 import Footer from "@/sections/footer"
 import PrismaticBurst from '@/components/PrismaticBurst';
+import Plasma from "@/components/Plasma"
 
 // Dynamically import FollowUs component to prevent circular dependencies
 const FollowUs = dynamic(() => import('@/sections/follow-us'), {
@@ -180,6 +181,16 @@ export default function HomePage() {
       {phase === "site" && (
         <>
           {/* Subtle animated starfield/nebula background; galaxy is unmounted */}
+        <div className="absolute inset-0 z-0">
+        <Plasma 
+            color="#f1d30e"
+            speed={0.1}
+            direction="reverse"
+            scale={0.3}
+            opacity={0.5}
+            mouseInteractive={false}
+          />
+        </div>
           <StarfieldCanvas opacity={0.35} />
           <Navbar />
           <div ref={siteRef} className="relative z-10">
