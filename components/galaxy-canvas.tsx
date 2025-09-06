@@ -17,7 +17,7 @@ type Particle = {
   speed: number // radians per second
   size: number  // radius in pixels
   armOffset: number
-  colorIndex: 0 | 1
+  colorIndex: 0 | 1 | 2
   phase: number      // for twinkle
   radialVel: number  // px per second (in/out drift)
 }
@@ -45,8 +45,9 @@ export function GalaxyCanvas({ mode = "landing", onZoomComplete, className }: Ga
   }, [onZoomComplete])
 
   const colors = [
-    { r: 0, g: 229, b: 255 }, // cyan
-    { r: 255, g: 106, b: 0 }, // orange
+    { r: 113, g: 244, b: 139 }, // #71f48b - green
+    { r: 241, g: 211, b: 14 },  // #f1d30e - yellow
+    { r: 244, g: 135, b: 11 },  // #f4870b - orange
   ]
 
   // create optimized soft glow sprite for a given color
@@ -100,7 +101,7 @@ export function GalaxyCanvas({ mode = "landing", onZoomComplete, className }: Ga
         // faster, livelier swirl (radians per second)
         const speed = 0.15 + Math.random() * 0.35 // 0.15..0.5 rad/s
         const size = Math.random() * 1.6 + 0.6 // drawImage scaled later
-        const colorIndex = (Math.random() < 0.5 ? 0 : 1) as 0 | 1
+        const colorIndex = Math.floor(Math.random() * 3) as 0 | 1 | 2
         const phase = Math.random() * Math.PI * 2 // for twinkle
         const radialVel = (Math.random() - 0.5) * 12 // px/s slight in-out drift
 
@@ -137,6 +138,7 @@ export function GalaxyCanvas({ mode = "landing", onZoomComplete, className }: Ga
     const starSprites = [
       createStarSprite(colors[0].r, colors[0].g, colors[0].b, 24),
       createStarSprite(colors[1].r, colors[1].g, colors[1].b, 24),
+      createStarSprite(colors[2].r, colors[2].g, colors[2].b, 24),
     ]
     
     let { particles, cx, cy, maxR } = spawnParticles(canvas.width / dpr, canvas.height / dpr)
