@@ -52,6 +52,17 @@ export default function HomePage() {
     setEntered(true)
   }
 
+  React.useEffect(() => {
+      const script = document.createElement('script');
+      script.src = 'https://apply.devfolio.co/v2/sdk.js';
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
+      return () => {
+        document.body.removeChild(script);
+      }
+    }, []);
+
   return (
     <main className="relative min-h-screen bg-black text-white">
       {/* Galaxy background */}
@@ -59,8 +70,14 @@ export default function HomePage() {
         <div>
         <GalaxyCanvas mode="landing" onZoomComplete={handleZoomComplete} className="fixed inset-0 z-0" />
         <div className="fixed bottom-0 left-0 w-full shadow-md">
+          <div 
+                className="apply-button" 
+                data-hackathon-slug="yuvaaithon" 
+                data-button-theme="light"
+                style={{ height: '22px', width: '156px' }}
+          ></div>
           <SponsorCarousel />
-        </div>
+        </div> 
 
 
         </div>
@@ -147,7 +164,13 @@ export default function HomePage() {
                   aria-hidden="true"
                   />
               </Button>
-            <SponsorCarousel/>
+              <div 
+              className="apply-button" 
+              data-hackathon-slug="yuvaaithon" 
+              data-button-theme="light"
+              style={{ height: '22px', width: '156px' }}
+              ></div>
+              <SponsorCarousel/> 
             </div>
             </div>
           </div>
