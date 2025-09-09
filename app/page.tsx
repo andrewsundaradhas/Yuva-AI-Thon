@@ -16,6 +16,7 @@ import dynamic from 'next/dynamic';
 import Footer from "@/sections/footer"
 import PrismaticBurst from '@/components/PrismaticBurst';
 import Plasma from "@/components/Plasma"
+import SponsorCarousel from "@/components/sponsor-carousel"
 import React from "react"
 
 // Dynamically import FollowUs component to prevent circular dependencies
@@ -55,8 +56,14 @@ export default function HomePage() {
     <main className="relative min-h-screen bg-black text-white">
       {/* Galaxy background */}
       {phase !== "site" && (
+        <div>
         <GalaxyCanvas mode="landing" onZoomComplete={handleZoomComplete} className="fixed inset-0 z-0" />
-        
+        <div className="fixed bottom-0 left-0 w-full shadow-md">
+          <SponsorCarousel />
+        </div>
+
+
+        </div>
       )}
 
       {phase === "landing" && null}
@@ -140,6 +147,7 @@ export default function HomePage() {
                   aria-hidden="true"
                   />
               </Button>
+            <SponsorCarousel/>
             </div>
             </div>
           </div>
