@@ -139,12 +139,12 @@ export function Navbar() {
                   </a>
                 </li>
               ))}
-            <div 
+            {/* <div 
               className="apply-button" 
               data-hackathon-slug="yuvaaithon" 
               data-button-theme="light"
               style={{ height: '22px', width: '156px' }}
-            ></div>
+            ></div> */}
             </ul>
           </div>
         </div>

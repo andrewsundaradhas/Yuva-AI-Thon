@@ -67,20 +67,7 @@ export default function HomePage() {
     <main className="relative min-h-screen bg-black text-white">
       {/* Galaxy background */}
       {phase !== "site" && (
-        <div>
         <GalaxyCanvas mode="landing" onZoomComplete={handleZoomComplete} className="fixed inset-0 z-0" />
-        <div className="fixed bottom-0 left-0 w-full shadow-md">
-          <div 
-                className="apply-button" 
-                data-hackathon-slug="yuvaaithon" 
-                data-button-theme="light"
-                style={{ height: '22px', width: '156px' }}
-          ></div>
-          <SponsorCarousel />
-        </div> 
-
-
-        </div>
       )}
 
       {phase === "landing" && null}
@@ -164,13 +151,6 @@ export default function HomePage() {
                   aria-hidden="true"
                   />
               </Button>
-              <div 
-              className="apply-button" 
-              data-hackathon-slug="yuvaaithon" 
-              data-button-theme="light"
-              style={{ height: '22px', width: '156px' }}
-              ></div>
-              <SponsorCarousel/> 
             </div>
             </div>
           </div>
