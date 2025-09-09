@@ -45,13 +45,13 @@ export default function PrizesSection() {
           </p>
         </div>
 
+      </div>
         <div>
-          <h3 className="text-lg font-semibold text-white/95">Our Sponsors & Partners</h3>
+          <h3 className="text-lg font-semibold text-white/95 mt-10">Our Sponsors & Partners</h3>
           <div className="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-6">
             <SponsorCarousel />
           </div>
         </div>
-      </div>
     </section>
   )
 }

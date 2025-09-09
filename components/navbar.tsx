@@ -103,7 +103,7 @@ export function Navbar() {
           className="apply-button" 
           data-hackathon-slug="https://yuvaaithon.devfolio.co" 
           data-button-theme="light"
-          style={{ height: '44px', width: '312px' }}
+          style={{ height: '22px', width: '156px' }}
         ></div>
 
         {/* Desktop links */}

@@ -18,7 +18,7 @@ export default function SponsorCarousel() {
   const track = [...logos, ...logos]
 
   return (
-    <div className="relative overflow-hidden" aria-label="Sponsor logos auto-scrolling">
+    <div className="relative overflow-auto" aria-label="Sponsor logos auto-scrolling">
       {/* use global .marquee keyframes from globals.css for the belt */}
       <div className="marquee flex min-w-[200%] items-center gap-12 md:gap-16">
         {track.map((item, i) => (
