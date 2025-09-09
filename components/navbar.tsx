@@ -86,27 +86,22 @@ export function Navbar() {
       className={cn("sticky top-0 z-40 w-full border-b border-white/10 bg-black/30 backdrop-blur-md")}
       aria-label="Main navigation"
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+      <div className="mx-auto flex max-w-6xl items-center justify-center px-4 py-3">
         {/* Logos + title */}
-        <div className="flex items-center gap-2 md:gap-3">
+        <div className="flex items-center gap-2 md:gap-3 mr-8">
           <img src="/logos/yuva.jpg" alt="YUVA logo" className="h-24 w-[104px] object-contain opacity-100" />
           <img src="/logos/yi.png" alt="Yi (Young Indians) logo" className="h-12 w-[76px] object-contain opacity-100" />
-          <span
-            className="ml-2 hidden text-sm font-semibold tracking-wide md:inline"
+          {/* <span
+            className="ml-2 mr-5 block border-r border-white/10 hidden text-sm font-semibold tracking-wide md:block"
             style={{ color: "#ffd600", textShadow: "0 0 8px rgba(255,214,0,0.35)" }}
           >
-            YUVA AI-Thon
-          </span>
+            YUVA AI-Thon 
+          </span> */}
         </div>
 
-        <div 
-          className="apply-button" 
-          data-hackathon-slug="https://yuvaaithon.devfolio.co" 
-          data-button-theme="light"
-          style={{ height: '22px', width: '156px' }}
-        ></div>
 
         {/* Desktop links */}
+
         <div className="hidden md:block">
           <div className="relative">
             <ul ref={listRef} className="relative flex items-center text-2xl gap-3">
@@ -123,12 +118,12 @@ export function Navbar() {
                     data-link-id={s.id}
                     href={`#${s.id}`}
                     className={cn(
-                      "relative block rounded-md px-3 py-2 text-base transition-all duration-300",
+                      "relative block rounded-md px-3 py-2 text-base transition-all duration-300 ",
                       active === s.id 
-                        ? "text-white font-medium" 
-                        : s.isSpecial 
-                          ? "bg-gradient-to-r from-yellow-500 to-amber-500 text-black hover:shadow-[0_0_15px_rgba(255,214,0,0.5)] hover:scale-105"
-                          : "text-white/75 hover:text-white hover:bg-white/5"
+                      ? "text-white font-medium" 
+                      : s.isSpecial 
+                      ? "bg-gradient-to-r from-yellow-500 to-amber-500 text-black hover:shadow-[0_0_15px_rgba(255,214,0,0.5)] hover:scale-105"
+                      : "text-white/75 hover:text-white hover:bg-white/5"
                     )}
                     style={s.isSpecial ? {
                       boxShadow: '0 0 10px rgba(255, 214, 0, 0.3)'
@@ -144,10 +139,17 @@ export function Navbar() {
                   </a>
                 </li>
               ))}
+            <div 
+              className="apply-button" 
+              data-hackathon-slug="yuvaaithon" 
+              data-button-theme="light"
+              style={{ height: '22px', width: '156px' }}
+            ></div>
             </ul>
           </div>
         </div>
 
+        
         {/* Mobile menu button */}
         <button
           className="md:hidden rounded-md border border-white/15 px-4 py-2.5 text-sm min-h-[42px] min-w-[80px] touch-manipulation"

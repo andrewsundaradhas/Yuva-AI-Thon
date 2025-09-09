@@ -15,23 +15,24 @@ export default function SponsorCarousel() {
   )
 
   // duplicate list for seamless, infinite loop
-  const track = [...logos, ...logos]
+  const track = [...logos]
 
   return (
-    <div className="relative overflow-auto" aria-label="Sponsor logos auto-scrolling">
-      {/* use global .marquee keyframes from globals.css for the belt */}
-      <div className="marquee flex min-w-[200%] items-center gap-12 md:gap-16">
+    <div className="relative overflow-hidden" aria-label="Sponsor logos grid">
+      <div className="grid grid-cols-2 gap-8 min-w-full items-center">
         {track.map((item, i) => (
-          <img
-            key={`${item.id}-${i}`}
-            src={item.src || "/placeholder.svg"}
-            alt={item.alt}
-            decoding="async"
-            loading="lazy"
-            className="h-28 w-auto md:h-32 object-contain opacity-100 [filter:drop-shadow(0_0_10px_rgba(255,214,0,0.18))]"
-          />
+          <div key={`${item.id}-${i}`} className="flex justify-center">
+            <img
+              src={item.src || "/placeholder.svg"}
+              alt={item.alt}
+              decoding="async"
+              loading="lazy"
+              className="h-20 w-auto object-contain opacity-100"
+            />
+          </div>
         ))}
       </div>
     </div>
+
   )
 }
