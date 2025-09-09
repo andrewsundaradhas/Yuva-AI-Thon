@@ -16,6 +16,7 @@ import dynamic from 'next/dynamic';
 import Footer from "@/sections/footer"
 import PrismaticBurst from '@/components/PrismaticBurst';
 import Plasma from "@/components/Plasma"
+import React from "react"
 
 // Dynamically import FollowUs component to prevent circular dependencies
 const FollowUs = dynamic(() => import('@/sections/follow-us'), {
@@ -32,6 +33,8 @@ import Events from "@/sections/Events"
 // 3) Neutral: near-black #0a0a0a
 // 4) Accent: cyan #00e5ff
 // 5) Accent: orange #ff6a00
+
+
 
 export default function HomePage() {
   // phases: "landing" (galaxy only), "core" (post-zoom hero), "site" (main content)

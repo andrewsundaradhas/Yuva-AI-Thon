@@ -8,6 +8,8 @@ export default function SponsorCarousel() {
       { id: "nk", alt: "NK Interior Designs Pvt. Ltd.", src: "/sponsors/nk-interior.jpg" },
       { id: "bianco", alt: "Bianco Infra", src: "/sponsors/bianco-infra.jpg" },
       { id: "yi", alt: "Young Indians (Yi)", src: "/logos/yi.png" },
+      { id: "ethindia", alt: "ETHINDIA LOGO", src: "/sponsors/ethindia-logo.png" },
+      { id: "devfolio", alt: "DEVFOLIO LOGO", src: "/sponsors/devfolio-logo.png" },
     ],
     [],
   )

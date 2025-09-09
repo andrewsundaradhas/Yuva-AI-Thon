@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react"
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 
 const sections = [
@@ -70,6 +70,17 @@ export function Navbar() {
     return () => window.removeEventListener("resize", onResize)
   }, [active])
 
+  React.useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://apply.devfolio.co/v2/sdk.js';
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    }
+  }, []);
+
   return (
     <nav
       className={cn("sticky top-0 z-40 w-full border-b border-white/10 bg-black/30 backdrop-blur-md")}
@@ -87,6 +98,13 @@ export function Navbar() {
             YUVA AI-Thon
           </span>
         </div>
+
+        <div 
+          className="apply-button" 
+          data-hackathon-slug="https://yuvaaithon.devfolio.co" 
+          data-button-theme="light"
+          style={{ height: '44px', width: '312px' }}
+        ></div>
 
         {/* Desktop links */}
         <div className="hidden md:block">
