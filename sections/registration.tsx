@@ -44,7 +44,7 @@ export default function RegistrationSection() {
           </Button>
         </div>
         <p className="mt-3 text-sm text-white/70">
-          Registration closes a few days before the event. Watch this space for updates.
+          Registration closes by 14th September. Watch this space for updates.
         </p>
       </div>
     </section>
